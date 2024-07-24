@@ -1,0 +1,32 @@
+services:
+  app:
+    build:
+      context: "docker/app/"
+    ports:
+      - 80:80
+      - 8000:80
+    working_dir: /var/app
+    volumes:
+      - "./app/:/var/app"
+      - "./docker/app/apache2/apache2.conf:/etc/apache2/apache2.conf"
+      - "./docker/app/apache2/sites-available/000-default.conf:/etc/apache2/sites-available/000-default.conf"
+    depends_on:
+      - mysql
+  mysql:
+    build:
+      context: "docker/mysql/"
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_DATABASE=sk_db
+      - MYSQL_HOST=mysql
+      - MYSQL_USER=sk_user
+      - MYSQL_PASSWORD=12345678
+      - MYSQL_ROOT_PASSWORD=12345678
+      - TZ=Asia/Tokyo
+    volumes:
+      - "./docker/mysql/storage/:/var/lib/mysql"
+      - "./docker/mysql/initdb/:/docker-entrypoint-initdb.d"
+    ports:
+      - "3306:3306"
+volumes:
+  storage:

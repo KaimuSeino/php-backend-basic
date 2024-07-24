@@ -1,0 +1,6 @@
+# docker 
+
+/docker/mysql/storage/*
+/html/*
+/.vscode
+
