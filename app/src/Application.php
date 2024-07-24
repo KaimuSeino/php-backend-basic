@@ -29,21 +29,20 @@ use Cake\Routing\Middleware\AssetMiddleware;
 use Cake\Routing\Middleware\RoutingMiddleware;
 
 /**
- * Application setup class.
+ * アプリケーションの設定クラス
  *
- * This defines the bootstrapping logic and middleware layers you
- * want to use in your application.
+ * アプリケーションで使用するブートストラップロジックとミドルウェアレイヤーが定義される
  */
 class Application extends BaseApplication
 {
     /**
-     * Load all the application configuration and bootstrap logic.
+     * 全てのアプリケーション設定とブートストラップロジックを読み込む
      *
      * @return void
      */
     public function bootstrap(): void
     {
-        // Call parent to load bootstrap from files.
+        // ファイルからブートストラップを読み込むために親を呼び出す。
         parent::bootstrap();
 
         if (PHP_SAPI === 'cli') {
@@ -56,47 +55,44 @@ class Application extends BaseApplication
         }
 
         /*
-         * Only try to load DebugKit in development mode
-         * Debug Kit should not be installed on a production system
+         * 開発者モードでのみDebugKitを読み込もうとする。
+         * DebugKitは本番システムにはインストールしない
          */
         if (Configure::read('debug')) {
             $this->addPlugin('DebugKit');
         }
 
-        // Load more plugins here
+        // ここに他のプラグインが必要であれば読み込みを行う
     }
 
     /**
-     * Setup the middleware queue your application will use.
+     * アプリケーションが使用するミドルウェアキューを設定する
      *
-     * @param \Cake\Http\MiddlewareQueue $middlewareQueue The middleware queue to setup.
-     * @return \Cake\Http\MiddlewareQueue The updated middleware queue.
+     * @param \Cake\Http\MiddlewareQueue $middlewareQueue 設定するミドルウェアキュー
+     * @return \Cake\Http\MiddlewareQueue 更新されたミドルウェアキュー
      */
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
         $middlewareQueue
-            // Catch any exceptions in the lower layers,
-            // and make an error page/response
+            // 下層の例外をキャッチし、エラーページ/レスポンスを作成する
             ->add(new ErrorHandlerMiddleware(Configure::read('Error'), $this))
 
-            // Handle plugin/theme assets like CakePHP normally does.
+            // CakePHPが通常行うようにプラグイン/テーマアセットを処理する
             ->add(new AssetMiddleware([
                 'cacheTime' => Configure::read('Asset.cacheTime'),
             ]))
 
-            // Add routing middleware.
-            // If you have a large number of routes connected, turning on routes
-            // caching in production could improve performance.
-            // See https://github.com/CakeDC/cakephp-cached-routing
+            // ルーティングのミドルウェアを追加する
+            // 多くのルートを接続している場合、本番環境でルートキャッシングをオンにするとパフォーマンスが向上する可能性がある
+            // 詳細は https://github.com/CakeDC/cakephp-cached-routing を確認する
             ->add(new RoutingMiddleware($this))
 
-            // Parse various types of encoded request bodies so that they are
-            // available as array through $request->getData()
-            // https://book.cakephp.org/4/en/controllers/middleware.html#body-parser-middleware
+            // さまざまな種類のエンコードされたリクエストボディを解析し、それらを配列として利用できるようにする
+            // https://book.cakephp.org/4/en/controllers/middleware.html#body-parser-middleware を参照
             ->add(new BodyParserMiddleware())
 
-            // Cross Site Request Forgery (CSRF) Protection Middleware
-            // https://book.cakephp.org/4/en/security/csrf.html#cross-site-request-forgery-csrf-middleware
+            // クロスサイトリクエストフォージェリ(CSRF)保護ミドルウェア
+            // https://book.cakephp.org/4/en/security/csrf.html#cross-site-request-forgery-csrf-middleware を参照
             ->add(new CsrfProtectionMiddleware([
                 'httponly' => true,
             ]));
@@ -105,9 +101,9 @@ class Application extends BaseApplication
     }
 
     /**
-     * Register application container services.
+     * アプリケーションのコンテナサービスを登録する
      *
-     * @param \Cake\Core\ContainerInterface $container The Container to update.
+     * @param \Cake\Core\ContainerInterface $container 更新するコンテナ
      * @return void
      * @link https://book.cakephp.org/4/en/development/dependency-injection.html#dependency-injection
      */
@@ -116,9 +112,9 @@ class Application extends BaseApplication
     }
 
     /**
-     * Bootstrapping for CLI application.
+     * CLIアプリケーションのブートストラップ
      *
-     * That is when running commands.
+     * これはコマンドを実行する際に使用する
      *
      * @return void
      */
@@ -128,6 +124,6 @@ class Application extends BaseApplication
 
         $this->addPlugin('Migrations');
 
-        // Load more plugins here
+        // ここに他のプラグインが必要であれば読み込みを行う
     }
 }
