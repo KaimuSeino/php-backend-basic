@@ -21,19 +21,19 @@ use Cake\Controller\Controller;
 /**
  * Application Controller
  *
- * Add your application-wide methods in the class below, your controllers
- * will inherit them.
+ * 以下のクラスにアプリケーションで使用するメソッドを追加する
+ * これらは全て継承される
  *
  * @link https://book.cakephp.org/4/en/controllers.html#the-app-controller
  */
 class AppController extends Controller
 {
     /**
-     * Initialization hook method.
+     * 初期化フックメソッド
      *
-     * Use this method to add common initialization code like loading components.
+     * このメソッドを使用して、コンポーネントの読み込みなどの共通の初期化コードを追加する
      *
-     * e.g. `$this->loadComponent('FormProtection');`
+     * 例 `$this->loadComponent('FormProtection');`
      *
      * @return void
      */
@@ -45,8 +45,8 @@ class AppController extends Controller
         $this->loadComponent('Flash');
 
         /*
-         * Enable the following component for recommended CakePHP form protection settings.
-         * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
+         * 推奨されるCakePHPフレームワーク保護設定のために以下のコンポーネントを有効化する
+         * https://book.cakephp.org/4/en/controllers/components/form-protection.html 参照
          */
         //$this->loadComponent('FormProtection');
     }
