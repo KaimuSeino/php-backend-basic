@@ -48,6 +48,8 @@ class UsersController extends AppController
         return $this->redirect(['controller' => 'Users', 'action' => 'login']);
     }
 
+    /**
+     * ユーザーの一覧表示
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
@@ -59,7 +61,7 @@ class UsersController extends AppController
     }
 
     /**
-     * View method
+     * ユーザーの詳細表示
      *
      * @param string|null $id User id.
      * @return \Cake\Http\Response|null|void Renders view
@@ -75,7 +77,7 @@ class UsersController extends AppController
     }
 
     /**
-     * Add method
+     * ユーザー追加アクション
      *
      * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
      */
@@ -95,7 +97,7 @@ class UsersController extends AppController
     }
 
     /**
-     * Edit method
+     * ユーザー編集アクション
      *
      * @param string|null $id User id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
@@ -119,7 +121,7 @@ class UsersController extends AppController
     }
 
     /**
-     * Delete method
+     * ユーザー削除アクション
      *
      * @param string|null $id User id.
      * @return \Cake\Http\Response|null|void Redirects to index.
