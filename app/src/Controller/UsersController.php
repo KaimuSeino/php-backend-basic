@@ -20,6 +20,25 @@ class UsersController extends AppController
 
         $this->Authentication->allowUnauthenticated(['login',]);
     }
+
+    /**
+     * ログインアクション
+     * 
+     * @return 
+     */
+    public function login()
+    {
+        $result = $this->Authentication->getResult();
+        // If the user is logged in send them away.
+        if ($result->isValid()) {
+            $target = $this->Authentication->getLoginRedirect() ?? '/home';
+            return $this->redirect($target);
+        }
+        if ($this->request->is('post')) {
+            $this->Flash->error('Invalid username or password');
+        }
+    }
+
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
