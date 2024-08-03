@@ -12,7 +12,14 @@ namespace App\Controller;
 class UsersController extends AppController
 {
     /**
-     * Index method
+     * アクション前の処理
+     */
+    public function beforeFilter(\Cake\Event\EventInterface $event)
+    {
+        parent::beforeFilter($event);
+
+        $this->Authentication->allowUnauthenticated(['login',]);
+    }
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
