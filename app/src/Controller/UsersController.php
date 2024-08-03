@@ -39,6 +39,15 @@ class UsersController extends AppController
         }
     }
 
+    /**
+     * ログアウトアクション
+     */
+    public function logout()
+    {
+        $this->Authentication->logout();
+        return $this->redirect(['controller' => 'Users', 'action' => 'login']);
+    }
+
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
