@@ -1,13 +1,12 @@
 <?php
 /**
- * Routes configuration.
+ * ルート設定
  *
- * In this file, you set up routes to your controllers and their actions.
- * Routes are very important mechanism that allows you to freely connect
- * different URLs to chosen controllers and their actions (functions).
+ * このファイルは、コントローラーとそのアクションに対するルートを設定する。
+ * ルートは、異なるURLを選択したコントローラーとそのアクション（関数）に自由に接続できる非常に重要なメカニズム。
  *
- * It's loaded within the context of `Application::routes()` method which
- * receives a `RouteBuilder` instance `$routes` as method argument.
+ * このファイルは、`Application::route()`メソッドコンテキスト内で読み込まれ
+ * メソッドの引用として`RouteBuilder`インスタンス`$route`を受け取る。
  *
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -25,71 +24,69 @@ use Cake\Routing\Route\DashedRoute;
 use Cake\Routing\RouteBuilder;
 
 /*
- * This file is loaded in the context of the `Application` class.
-  * So you can use  `$this` to reference the application class instance
-  * if required.
+ * このファイルは`Application`クラスのコンテキストで読み込まれる。
+ * そのため、必要に応じて`$this`を使用してアプリケーションクラスのインスタンスを参照できる。
  */
 return function (RouteBuilder $routes): void {
     /*
-     * The default class to use for all routes
+     * 全てのルートに使用するデフォルトクラス
      *
-     * The following route classes are supplied with CakePHP and are appropriate
-     * to set as the default:
+     * CakePHPには次のルートクラスが用意されており、デフォルトとして設定するのに適している。
      *
      * - Route
      * - InflectedRoute
      * - DashedRoute
      *
-     * If no call is made to `Router::defaultRouteClass()`, the class used is
+     * `Router::defaultRouteClass()`が呼び出されていない場合、使用されるクラスは
      * `Route` (`Cake\Routing\Route\Route`)
      *
-     * Note that `Route` does not do any inflections on URLs which will result in
      * inconsistently cased URLs when used with `{plugin}`, `{controller}` and
      * `{action}` markers.
+     * `Route`はURLに対してインフレクションを行わないため、`{plugin}`, `{controller}`, `{action}`マーカーを使用すると、不一致の大文字小文字のURLが生成される。
      */
     $routes->setRouteClass(DashedRoute::class);
 
     $routes->scope('/', function (RouteBuilder $builder): void {
         /*
          * Here, we are connecting '/' (base path) to a controller called 'Pages',
+         * ここでは、'/'（ベースパス）を'Pages'というコントローラーの
          * its action called 'display', and we pass a param to select the view file
-         * to use (in this case, templates/Pages/home.php)...
+         * 'display'というアクションに接続し、使用するビューファイルを選択する
+         * パラメーターを渡している。この場合、templates/Pages/home.php
          */
         $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
 
         /*
-         * ...and connect the rest of 'Pages' controller's URLs.
+         * そして、'Pages'コントローラーの他のURLを接続する
          */
         $builder->connect('/pages/*', 'Pages::display');
 
         /*
-         * Connect catchall routes for all controllers.
+         * 全てのコントローラーに対するキャッチオールルートを接続する。
          *
-         * The `fallbacks` method is a shortcut for
+         * `fallbacks`メソッドは以下のショートカットである。
          *
          * ```
          * $builder->connect('/{controller}', ['action' => 'index']);
          * $builder->connect('/{controller}/{action}/*', []);
          * ```
          *
-         * You can remove these routes once you've connected the
-         * routes you want in your application.
+         * applicationで接続するルートを設定したら、これらのルートを削除できる。
          */
         $builder->fallbacks();
     });
 
     /*
-     * If you need a different set of middleware or none at all,
-     * open new scope and define routes there.
+     * 別のミドルウェアセットが必要な場合や、全く不要な場合は、新しいスコープを開いてそこでルートを定義する。
      *
      * ```
      * $routes->scope('/api', function (RouteBuilder $builder): void {
-     *     // No $builder->applyMiddleware() here.
+     *     // ここでは $builder->applyMiddleware()を使用しない。
      *
-     *     // Parse specified extensions from URLs
+     *     // URLから指定された拡張子を解析する。
      *     // $builder->setExtensions(['json', 'xml']);
      *
-     *     // Connect API actions here.
+     *     // ここでAPIアクションを接続
      * });
      * ```
      */
