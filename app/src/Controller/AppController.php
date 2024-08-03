@@ -44,6 +44,11 @@ class AppController extends Controller
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
 
+        // Authenticationコンポーネントをロード
+        $this->loadComponent('Authentication.Authentication', [
+            'logoutRedirect' => 'users/login' // デフォルトではfalse
+        ]);
+
         /*
          * 推奨されるCakePHPフレームワーク保護設定のために以下のコンポーネントを有効化する
          * https://book.cakephp.org/4/en/controllers/components/form-protection.html 参照
