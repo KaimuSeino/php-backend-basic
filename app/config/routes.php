@@ -46,38 +46,31 @@ return function (RouteBuilder $routes): void {
      */
     $routes->setRouteClass(DashedRoute::class);
 
-    $routes->scope('/', function (RouteBuilder $builder): void {
+    $routes->scope('/', function (RouteBuilder $routes): void {
         /*
-         * Here, we are connecting '/' (base path) to a controller called 'Pages',
          * ここでは、'/'（ベースパス）を'Pages'というコントローラーの
-         * its action called 'display', and we pass a param to select the view file
          * 'display'というアクションに接続し、使用するビューファイルを選択する
          * パラメーターを渡している。この場合、templates/Pages/home.php
          */
-        $builder->connect('/',
+        $routes->connect('/',
             ['controller' => 'Pages', 'action' => 'display', 'home'],
-            ['_name' => 'home']
         );
 
         /*
          * そして、'Pages'コントローラーの他のURLを接続する
          */
-        $builder->connect('/pages/*', 'Pages::display');
-
-        /*
-         * 全てのコントローラーに対するキャッチオールルートを接続する。
-         *
-         * `fallbacks`メソッドは以下のショートカットである。
-         *
-         * ```
-         * $builder->connect('/{controller}', ['action' => 'index']);
-         * $builder->connect('/{controller}/{action}/*', []);
-         * ```
-         *
-         * applicationで接続するルートを設定したら、これらのルートを削除できる。
-         */
-        $builder->fallbacks();
+        $routes->connect('/pages/*', 'Pages::display');
     });
+
+    /*
+    * 認証関連のルーティング設定
+    */
+    $routes->scope('/auth', function (RouteBuilder $routes): void {
+        $routes->connect('/login', ['controller' => 'Auth', 'action' => 'login']);
+        $routes->connect('/register', ['controller' => 'Auth', 'action' => 'register']);
+    });
+
+    $routes->connect('/user', ['controller' => 'Users', 'action' => 'index']);
 
     /*
      * 別のミドルウェアセットが必要な場合や、全く不要な場合は、新しいスコープを開いてそこでルートを定義する。
