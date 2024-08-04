@@ -16,6 +16,7 @@
                 'label' => 'パスワード'
             ]) ?>
         </div>
+        <a href="/auth/register" style="margin-top: 10px;">新規登録はこちら</a>
     </fieldset>
     <?= $this->Form->button(__('ログイン'), ['class' => 'btn']); ?>
     <?= $this->Form->end() ?>
