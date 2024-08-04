@@ -21,7 +21,6 @@ class UsersController extends AppController
     {
         parent::beforeFilter($event);
 
-        $this->Authentication->allowUnauthenticated(['index']);
     }
 
     /**
