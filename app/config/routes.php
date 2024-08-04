@@ -54,7 +54,10 @@ return function (RouteBuilder $routes): void {
          * 'display'というアクションに接続し、使用するビューファイルを選択する
          * パラメーターを渡している。この場合、templates/Pages/home.php
          */
-        $builder->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
+        $builder->connect('/',
+            ['controller' => 'Pages', 'action' => 'display', 'home'],
+            ['_name' => 'home']
+        );
 
         /*
          * そして、'Pages'コントローラーの他のURLを接続する
