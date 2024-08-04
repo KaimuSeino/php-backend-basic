@@ -57,6 +57,8 @@ class PagesController extends AppController
      */
     public function display(string ...$path): ?Response
     {
+        $auth = $this->Authentication->getIdentity();
+
         if (!$path) {
             return $this->redirect('/');
         }
@@ -72,7 +74,9 @@ class PagesController extends AppController
             $subpage = $path[1];
         }
 
-        $this->set(compact('page', 'subpage'));
+        $this->set('page', $page);
+        $this->set('subpage', $subpage);
+        $this->set('auth', $auth);
 
         try {
             return $this->render(implode('/', $path));
