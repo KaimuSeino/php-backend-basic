@@ -7,17 +7,19 @@
 <div class="users form content">
     <?= $this->Form->create() ?>
     <fieldset>
-        <legend><?= __('新しいアカウントを作成') ?></legend>
-        <?= $this->Form->control('username', [
-            'label' => 'ユーザー名'
-        ]) ?>
-        <?= $this->Form->control('email', [
-            'label' => 'メールアドレス'
-        ]) ?>
-        <?= $this->Form->control('password', [
-            'label' => 'パスワード'
-        ]) ?>
+        <label class="label-title"><?= __('新しいアカウントを作成') ?></label>
+        <div>
+            <?= $this->Form->control('username', [
+                'label' => 'ユーザー名'
+            ]) ?>
+            <?= $this->Form->control('email', [
+                'label' => 'メールアドレス'
+            ]) ?>
+            <?= $this->Form->control('password', [
+                'label' => 'パスワード'
+            ]) ?>
+        </div>
     </fieldset>
-    <?= $this->Form->button(__('登録')); ?>
+    <?= $this->Form->button(__('登録'), ['class' => 'btn']); ?>
     <?= $this->Form->end() ?>
 </div>
