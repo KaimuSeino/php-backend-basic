@@ -5,17 +5,17 @@
  */
 ?>
 <div class="users index content">
-    <h3><?= __('Users') ?></h3>
+    <h3><?= __('ユーザー情報') ?></h3>
     <div class="column-responsive column-80">
         <div class="users view content">
             <h3><?= h($user->username) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Username') ?></th>
+                    <th><?= __('ユーザー名') ?></th>
                     <td><?= h($user->username) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Email') ?></th>
+                    <th><?= __('メールアドレス') ?></th>
                     <td><?= h($user->email) ?></td>
                 </tr>
             </table>
