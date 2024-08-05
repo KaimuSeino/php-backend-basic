@@ -1,0 +1,70 @@
+header nav {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+input {
+  border: 1px solid rgb(0, 0, 255);
+  border-radius: 6px;
+  padding: 4px;
+  width: 100%;
+}
+
+fieldset {
+  border: 2px solid rgb(0, 0, 255);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  margin: 2rem 0;
+}
+
+.label-title {
+  font-weight: 700;
+  margin: 1rem;
+}
+
+.btn {
+  background-color: white;
+  color: rgb(0, 0, 255);
+  border: 2px solid rgb(0, 0, 255);
+  border-radius: 12px;
+  padding: 10px 40px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+.btn:hover {
+  background-color: rgb(0, 0, 255);
+  color: white;
+}
+
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 80%;
+  font-weight: bold;
+  margin: 0 auto;
+}
+
+.top-nav-title {
+  font-size: 2rem;
+  color: rgb(0, 0, 255);
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 100%;
+  padding: 0 2rem;
+}
+
+.form {
+  margin: 10% 20%;
+}/*# sourceMappingURL=index.css.map */

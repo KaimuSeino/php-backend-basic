@@ -1,0 +1,78 @@
+$btnBgColor: white;
+$btnTextColor: rgb(0, 0, 255);
+$btnBorderColor: rgb(0, 0, 255);
+
+$basicColor: rgb(0, 0, 255);
+
+header nav {
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+input {
+    border: 1px solid $basicColor;
+    border-radius: 6px;
+    padding: 4px;
+    width: 100%;
+}
+
+fieldset {
+    border: 2px solid $basicColor;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+    margin: 2rem 0;
+}
+
+.label-title {
+    font-weight: 700;
+    margin: 1rem;
+}
+
+.btn {
+    background-color: $btnBgColor;
+    color: $btnTextColor;
+    border: 2px solid $btnBorderColor;
+    border-radius: 12px;
+    padding: 10px 40px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+
+    transition: all 0.4s;
+
+    &:hover {
+        background-color: $btnBorderColor;
+        color: $btnBgColor;
+    }
+}
+
+.top-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 80%;
+    font-weight: bold;
+    margin: 0 auto;
+}
+.top-nav-title {
+    font-size: 2rem;
+    color: $basicColor;
+}
+
+.container {
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 0 2.0rem;
+}
+
+.form {
+    margin: 10% 20%;
+}
+
