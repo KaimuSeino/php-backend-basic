@@ -71,6 +71,8 @@ return function (RouteBuilder $routes): void {
     });
 
     $routes->connect('/user', ['controller' => 'Users', 'action' => 'index']);
+    $routes->connect('/user/edit', ['controller' => 'Users', 'action' => 'edit']);
+    $routes->connect('/user/delete', ['controller' => 'Users', 'action' => 'delete']);
 
     /*
      * 別のミドルウェアセットが必要な場合や、全く不要な場合は、新しいスコープを開いてそこでルートを定義する。
